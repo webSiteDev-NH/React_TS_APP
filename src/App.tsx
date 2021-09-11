@@ -4,14 +4,7 @@ import { Form } from './form';
 
 const App: React.FC = () => {
 
-  // [状態変数, 変更関数] = useState(初期値);
-  const [description,setDescription] = useState('クリック前の表示');
-
   const [tab, setTab] = useState('list');
-
-  const changeDescription = () => {
-    setDescription('クリック後の表示');
-  }
 
   return (
     <div>
@@ -22,11 +15,9 @@ const App: React.FC = () => {
         </ul>
       </header>
       <hr/>
-      {description}
       {
-        tab === 'list' ? <List title="取り扱い言語" /> : <Form />
+        tab === 'list' ? <List /> : <Form />
       }
-      <button onClick={changeDescription}>ボタン</button>
     </div>
   );
 
