@@ -1,10 +1,13 @@
 import {useState} from 'react';
 import { List } from './list';
+import { Form } from './form';
 
 const App: React.FC = () => {
 
   // [状態変数, 変更関数] = useState(初期値);
   const [description,setDescription] = useState('クリック前の表示');
+
+  const [tab, setTab] = useState('list');
 
   const changeDescription = () => {
     setDescription('クリック後の表示');
@@ -12,8 +15,17 @@ const App: React.FC = () => {
 
   return (
     <div>
+      <header>
+        <ul>
+          <li onClick={() => setTab('list')} >リスト</li>
+          <li onClick={() => setTab('form')}>フォーム</li>
+        </ul>
+      </header>
+      <hr/>
       {description}
-      <List title="取り扱い言語" />
+      {
+        tab === 'list' ? <List title="取り扱い言語" /> : <Form />
+      }
       <button onClick={changeDescription}>ボタン</button>
     </div>
   );
