@@ -1,20 +1,24 @@
+import {useState} from 'react';
 import { List } from './list';
-import { Props } from './Type';
-
-const obj: Props = {
-  title: "タイトル",
-  num: 1
-}
 
 const App: React.FC = () => {
+
+  // [状態変数, 変更関数] = useState(初期値);
+  const [description,setDescription] = useState('クリック前の表示');
+
+  const changeDescription = () => {
+    setDescription('クリック後の表示');
+  }
+
   return (
     <div>
-      APP
-      <List {...obj}/>
+      {description}
+      <List title="取り扱い言語" />
+      <button onClick={changeDescription}>ボタン</button>
     </div>
   );
-}
 
+}
 export default App;
 
 /* MEMO
@@ -44,5 +48,9 @@ export default App;
   - 階層構造でないとエラーとなる
     <React.Fragment></React.Fragment>：HTMLタグと出力せずに階層構造をつくれる
     省略形：<></>
+
+ * コンポーネントの関係
+  親 → 値を渡す側
+  子 → 値を受け取る側（props）
 
  */
