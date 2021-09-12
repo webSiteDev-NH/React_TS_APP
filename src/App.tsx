@@ -21,7 +21,7 @@ const App = () => {
     fetchLanguages();
   // }) 毎回
   }, []) // 最初のみ
-  // }, [langs]) // 最初と変更があった時
+  // }, [langs]) // 最初 + 変数に変更があった時
 
   // １秒後にリストが表示される関数
  const fetchLanguages = async () => {
