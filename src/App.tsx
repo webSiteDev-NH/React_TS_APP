@@ -1,10 +1,18 @@
 import {useState} from 'react';
 import { List } from './list';
 import { Form } from './form';
+import { LANGUAGES } from './const/Type';
 
-const App: React.FC = () => {
+const App = () => {
 
   const [tab, setTab] = useState('list');
+
+  const [langs, setLangs] = useState(LANGUAGES);
+
+  // Formコンポーネントに渡す関数
+  const addLang = (lang: string): void => {
+    console.log(lang)
+  }
 
   return (
     <div>
@@ -16,7 +24,7 @@ const App: React.FC = () => {
       </header>
       <hr/>
       {
-        tab === 'list' ? <List /> : <Form />
+        tab === 'list' ? <List /> : <Form onAddLang={addLang}/>
       }
     </div>
   );

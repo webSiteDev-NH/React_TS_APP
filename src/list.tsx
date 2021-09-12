@@ -1,11 +1,4 @@
-const LANGUAGES: string[] = [
-  'JavaScript',
-  'C++',
-  'Ruby',
-  'Java',
-  'PHP',
-  'Go'
-]
+import { LANGUAGES } from './const/Type';
 
 export const List: React.FC = () => {
 

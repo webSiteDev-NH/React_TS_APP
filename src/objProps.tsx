@@ -1,4 +1,4 @@
-import { Props } from './Type';
+import { Props } from './const/Type';
 
 export const ObjProps = (props: Props) => {
   return(
