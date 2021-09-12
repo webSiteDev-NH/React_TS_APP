@@ -11,7 +11,9 @@ const App = () => {
 
   // Formコンポーネントに渡す関数
   const addLang = (lang: string): void => {
-    console.log(lang)
+    //スプレッド構文：配列や文字列を展開する
+    setLangs([...langs, lang]) // 既存配列に新しい値を追加
+    setTab('list') // 追加した時にリストに画面を変更する
   }
 
   return (
@@ -24,7 +26,7 @@ const App = () => {
       </header>
       <hr/>
       {
-        tab === 'list' ? <List /> : <Form onAddLang={addLang}/>
+        tab === 'list' ? <List langs={langs} /> : <Form onAddLang={addLang} />
       }
     </div>
   );

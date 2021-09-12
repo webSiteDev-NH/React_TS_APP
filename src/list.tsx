@@ -1,11 +1,10 @@
-import { LANGUAGES } from './const/Type';
-
-export const List: React.FC = () => {
+// 現在のlangs（言語リスト）を受け取りリスト表示する
+export const List: React.FC<{langs: string[]}> = ({langs}) => {
 
   return(
     <>
       {
-        LANGUAGES.map((lang, index) => {
+        langs.map((lang, index) => {
           return <div key={index} >{ lang }</div>
         })
       }
