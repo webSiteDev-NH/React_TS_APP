@@ -12,3 +12,12 @@ export const LANGUAGES: string[] = [
   'Go'
 ]
 
+// Promiseに型指定しないとエラー
+export const getLanguages = () => {
+  return new Promise<string[]>((resolve) => {
+    setTimeout( () => {
+      resolve(LANGUAGES);
+    }, 1000)
+  })
+}
+
