@@ -1,4 +1,24 @@
+import styled from 'styled-components';
 import {useEffect} from 'react';
+
+// CSS
+// styled-components
+/*----------------------------------- */
+const Container = styled.div`
+  padding: 12px 64px ;
+`
+
+// 要素:nth-child(値){ 内容 }
+// n+2 = 2番目以降
+// 1番目のリスト以外に border-top を当てる
+const ListItem = styled.div`
+  padding: 8px 16px ;
+
+  &:nth-child(n+2){
+    border-top: 1px solid #D9DBDE;
+  }
+`
+/*----------------------------------- */
 
 // 現在のlangs（言語リスト）を受け取りリスト表示する
 export const List: React.FC<{langs: string[]}> = ({langs}) => {
@@ -17,13 +37,13 @@ export const List: React.FC<{langs: string[]}> = ({langs}) => {
   })
 
   return(
-    <>
+    <Container>
       {
         langs.map((lang, index) => {
-          return <div key={index} >{ lang }</div>
+          return <ListItem key={index} >{ lang }</ListItem>
         })
       }
-    </>
+    </Container>
   )
 
 }
