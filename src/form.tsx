@@ -53,6 +53,8 @@ export const Form: React.FC<FunctionProps> = ({onAddLang}) => {
 
   const [text, setText] = useState('');
 
+  // onAddLang(text)：追加ボタン押下 → 入力項目(text)を言語リストに追加 → リストタブに切り替え
+  // 参照元：APP.tsx内の addLang(param: string): void
   const submitForm = (event: any) => {
     event.preventDefault(); //ページ遷移を止める
     onAddLang(text);

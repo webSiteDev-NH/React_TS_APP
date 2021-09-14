@@ -2,7 +2,8 @@ import styled from 'styled-components';
 import {useState, useEffect } from 'react';
 import { List } from './list';
 import { Form } from './form';
-import { getLanguages} from './const/Type';
+import { getLanguages } from './const/Type';
+import { withLoading } from './hoc/withLoading'
 
 // CSS
 // styled-components
@@ -33,11 +34,11 @@ const Headerli = styled.li<{ focused: boolean }>`
 `
 /*----------------------------------- */
 
-const App = () => {
+const App: React.FC<{data: string[]}> = ( {data} ) => {
 
   const [tab, setTab] = useState('list');
 
-  const [langs, setLangs] = useState<string[]>([]);
+  const [langs, setLangs] = useState<string[]>(data);
 
   // ライフサイクル（Mounting → Updating → Unmounting）
   // useEffect( 関数 , [変数] )
@@ -46,18 +47,18 @@ const App = () => {
    * 空の配列 → 最初のみ実行される
    * 変数 → 変更があった時に実行される
   */
-  useEffect( () => {
-    console.log('useEffect');
-    fetchLanguages();
-  // }) 毎回
-  }, []) // 最初のみ
+  // useEffect( () => {
+  //   console.log('useEffect');
+  //   fetchLanguages();
+  // // }) 毎回
+  // }, []) // 最初のみ
   // }, [langs]) // 最初 + 変数に変更があった時
 
   // １秒後にリストが表示される関数
- const fetchLanguages = async () => {
-  const languages = await getLanguages();
-  setLangs(languages);
- }
+//  const fetchLanguages = async () => {
+//   const languages = await getLanguages();
+//   setLangs(languages);
+//  }
 
   // Formコンポーネントに渡す関数
   const addLang = (lang: string): void => {
@@ -81,7 +82,7 @@ const App = () => {
   );
 
 }
-export default App;
+export default withLoading(App, getLanguages);
 
 /* MEMO
   * jsxとは
