@@ -24,6 +24,7 @@ interface buttonClick {
   cancel(): void;
 }
 
+// Modal：背面
 export const FormModal: React.FC<buttonClick> = ({confirm, cancel}) => {
   return (
     <Modal>
