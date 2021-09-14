@@ -2,6 +2,7 @@ import {useState} from 'react';
 import styled from 'styled-components';
 import {Button} from './components/button';
 import {TabBodyContainer} from './components/tab-body-container';
+import { FormModal } from './formModal';
 
 // CSS
 // styled-components
@@ -53,11 +54,14 @@ export const Form: React.FC<FunctionProps> = ({onAddLang}) => {
 
   const [text, setText] = useState('');
 
+  const [showModal, setShowModal] = useState(false);
+
   // onAddLang(text)：追加ボタン押下 → 入力項目(text)を言語リストに追加 → リストタブに切り替え
   // 参照元：APP.tsx内の addLang(param: string): void
   const submitForm = (event: any) => {
     event.preventDefault(); //ページ遷移を止める
-    onAddLang(text);
+    // onAddLang(text);
+    setShowModal(true);
   }
 
   return(
@@ -75,6 +79,15 @@ export const Form: React.FC<FunctionProps> = ({onAddLang}) => {
           <FormButton>追加</FormButton>
         </div>
       </form>
+      {
+        // showModal = true の時にモーダル表示
+        showModal &&
+        <FormModal
+          confirm={ () => onAddLang(text) }
+          cancel={ () => setShowModal(false) }
+        />
+
+      }
     </TabBodyContainer>
   )
 }

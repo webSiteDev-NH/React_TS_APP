@@ -3,7 +3,8 @@ import {useState, useEffect } from 'react';
 import { List } from './list';
 import { Form } from './form';
 import { getLanguages } from './const/Type';
-import { withLoading } from './hoc/withLoading'
+import { withLoading } from './hoc/withLoading';
+import { Modal } from './components/modal';
 
 // CSS
 // styled-components
