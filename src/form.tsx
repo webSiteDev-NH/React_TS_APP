@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import {Button} from './components/button';
 import {TabBodyContainer} from './components/tab-body-container';
 import { FormModal } from './formModal';
+import { Hint } from './hint';
 
 // CSS
 // styled-components
@@ -74,6 +75,7 @@ export const Form: React.FC<FunctionProps> = ({onAddLang}) => {
             value={text}
             onChange={ (e) => { setText( e.target.value ) } }
           />
+          <Hint />
         </div>
         <div>
           <FormButton>追加</FormButton>
