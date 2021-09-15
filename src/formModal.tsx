@@ -1,12 +1,16 @@
+import { useContext } from 'react';
 import { Modal } from './components/modal';
 import { Button } from './components/button';
 import styled from 'styled-components';
+import { ThemeContext, THEMES } from './contexts/ThemeContext';
 
 const Container = styled.div`
   border-radius: 10px;
   padding: 24px 36px;
   width: 240px;
-  background-color: white;
+  color: ${ ({ theme }) => theme.color };
+  background-color: ${ ({ theme }) => theme.backgroundColor };
+  border: ${ ({ theme }) => theme === THEMES.dark ? '1px solid white' : 'none' };
 `
 
 const ButtonWrappr = styled.div`
@@ -26,9 +30,12 @@ interface buttonClick {
 
 // Modal：背面
 export const FormModal: React.FC<buttonClick> = ({confirm, cancel}) => {
+
+  const [theme] = useContext(ThemeContext);
+
   return (
     <Modal>
-      <Container>
+      <Container theme={theme}>
         <div>本当に作成しますか？</div>
         <ButtonWrappr>
           <Button onClick={cancel}>Cancal</Button>

@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+import { Button } from './components/button'
+import { useContext } from 'react';
+import { ThemeContext } from './contexts/ThemeContext'
 
 // CSS
 // styled-components
@@ -27,15 +30,28 @@ const Headerli = styled.li<{ focused: boolean }>`
   cursor: pointer;
   border-bottom: ${ ({ focused }) => focused ? '2px solid #F44336' : 'none'};
 `
+
+const HeaderButton = styled(Button)`
+  padding: 0;
+  margin-bottom: 4px;
+`
 /*----------------------------------- */
 
 export const Header: React.FC<{tab: string; setTab(param:string): void;}> = ({tab, setTab}) => {
+
+  const [theme, toggleTheme] = useContext(ThemeContext);
+
+  // useContextで受け取った value は union型 のため onClick でエラー
+  // 対策：関数で取得した時に実行するようにしましたが、これが正解かはまだわからない
   return(
     <Container>
       <Headerul>
         <Headerli focused={tab ==='list'} onClick={() => setTab('list')} >リスト</Headerli>
         <Headerli focused={tab ==='form'} onClick={() => setTab('form')} >フォーム</Headerli>
       </Headerul>
+      <HeaderButton onClick={ (e) => typeof toggleTheme === 'function' ? toggleTheme() : toggleTheme }>
+        テーマ変更
+      </HeaderButton>
     </Container>
   )
 }

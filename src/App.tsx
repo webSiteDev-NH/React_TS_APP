@@ -1,11 +1,18 @@
 import styled from 'styled-components';
-import {useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { List } from './list';
 import { Form } from './form';
 import { getLanguages } from './const/Type';
 import { withLoading } from './hoc/withLoading';
 import { Modal } from './components/modal';
 import { Header } from './Header';
+import { ThemeContext } from './contexts/ThemeContext'
+
+const Container = styled.div`
+  height: 100%;
+  color: ${ ({ theme }) => theme.color };
+  background-color: ${ ({ theme }) => theme.backgroundColor };
+`
 
 
 const App: React.FC<{data: string[]}> = ( {data} ) => {
@@ -13,6 +20,9 @@ const App: React.FC<{data: string[]}> = ( {data} ) => {
   const [tab, setTab] = useState('list');
 
   const [langs, setLangs] = useState<string[]>(data);
+
+  // AppContainerで Provider された value を使用
+  const [theme] = useContext(ThemeContext);
 
   // ライフサイクル（Mounting → Updating → Unmounting）
   // useEffect( 関数 , [変数] )
@@ -42,16 +52,16 @@ const App: React.FC<{data: string[]}> = ( {data} ) => {
   }
 
   return (
-    <div>
+    <Container theme={theme}>
       <Header tab={tab} setTab={setTab} />
       {
         tab === 'list' ? <List langs={langs} /> : <Form onAddLang={addLang} />
       }
-    </div>
+    </Container>
   );
 
 }
-export default withLoading(App, getLanguages);
+export default App;
 
 /* MEMO
   * jsxとは

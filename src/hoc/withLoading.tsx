@@ -1,8 +1,12 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useContext } from 'react';
 import styled from 'styled-components';
+import { ThemeContext } from '../contexts/ThemeContext';
 
 const LoadDiv = styled.div`
+  height: 100%;
   padding: 36px;
+  color: ${ ({ theme }) => theme.color };
+  background-color: ${ ({ theme }) => theme.backgroundColor };
 `
 /* Higher-Order Compoent（HOC）
  * 引数でコンポーネントを受け取り、コンポーネントを返す
@@ -21,6 +25,8 @@ export const withLoading = (WrappedComponent: React.FC<{data: string[]}>, fetchD
     // 型定義しないとエラー
     const [data, setData] = useState<string[]>([]);
 
+    const [theme] = useContext(ThemeContext);
+
     // 最初(Mounting)だけデータを取得する
     useEffect( () => {
       fetch();
@@ -35,7 +41,7 @@ export const withLoading = (WrappedComponent: React.FC<{data: string[]}>, fetchD
     }
 
     const Loading = (
-      <LoadDiv>ロード中...</LoadDiv>
+      <LoadDiv theme={theme}>ロード中...</LoadDiv>
     )
 
     // dataがあるか無いか
