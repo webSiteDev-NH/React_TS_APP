@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { useState, useEffect, useContext } from 'react';
 import { List } from './list';
 import { Form } from './form';
+import { Chat } from './chat';
 import { getLanguages } from './const/Type';
 import { withLoading } from './hoc/withLoading';
 import { Modal } from './components/modal';
@@ -51,12 +52,19 @@ const App: React.FC<{data: string[]}> = ( {data} ) => {
     setTab('list') // 追加した時にリストに画面を変更する
   }
 
+  const questions: string[] = [
+    'エンジニア歴は？',
+    '年齢は？',
+    '趣味は？',
+    '出身地は？'
+  ]
+
   return (
     <Container theme={theme}>
       <Header tab={tab} setTab={setTab} />
-      {
-        tab === 'list' ? <List langs={langs} /> : <Form onAddLang={addLang} />
-      }
+      { tab === 'list' && <List langs={langs} /> }
+      { tab === 'form' && <Form onAddLang={addLang} /> }
+      { tab === 'chat' && <Chat questions={questions} /> }
     </Container>
   );
 
