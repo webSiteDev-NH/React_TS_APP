@@ -14,5 +14,3 @@ git commit -m"コミットメッセージ"
 ```
 git push origin develop
 ```
-
-revertコミット
