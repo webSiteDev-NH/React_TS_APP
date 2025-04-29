@@ -30,3 +30,6 @@ git push origin ブランチ名
 ```
 git pull origin ブランチ名
 ```
+
+
+コンフリクト1
