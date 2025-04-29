@@ -46,7 +46,8 @@ export const Header: React.FC<{tab: string; setTab(param:string): void;}> = ({ta
   return(
     <Container>
       <Headerul>
-        <Headerli focused={tab ==='list'} onClick={() => setTab('list')} >リスト</Headerli>
+        <Headerli focused={tab ==='list'} onClick={() => setTab('list')} >リストテスト
+        </Headerli>
         <Headerli focused={tab ==='form'} onClick={() => setTab('form')} >フォーム</Headerli>
         <Headerli focused={tab ==='chat'} onClick={() => setTab('chat')} >チャット</Headerli>
       </Headerul>

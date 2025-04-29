@@ -69,7 +69,7 @@ export const Form: React.FC<FunctionProps> = ({onAddLang}) => {
     <TabBodyContainer title="新しい言語の追加">
       <form onSubmit={submitForm}>
         <div>
-          <Label>言語</Label>
+          <Label>言語テスト</Label>
           <Input
             type="text"
             value={text}
